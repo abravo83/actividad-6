@@ -24,7 +24,7 @@ export class UsersService {
     }
   }
 
-  getUserById(id: number): Observable<Iuser | Object> {
+  getUserById(id: string): Observable<Iuser | Object> {
     return this.http.get(`${this.API_BASEURL}users/${id}`);
   }
 
