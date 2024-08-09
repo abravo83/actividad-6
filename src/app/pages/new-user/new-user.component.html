@@ -1,1 +1,6 @@
-<p>new-user works!</p>
+<section class="mt-40 sm:mt-32 container mx-auto">
+  <h1 class="text-2xl md:text-3xl xl:text-4xl font-bold p-6 2xl:px-60">
+    Registro de Nuevo Usuario
+  </h1>
+  <app-user-form (onFormSubmit)="onFormSubmitted($event)"></app-user-form>
+</section>
