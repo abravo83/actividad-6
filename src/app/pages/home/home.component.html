@@ -1,1 +1,185 @@
-<p>home works!</p>
+<div class="container mx-auto my-40 px-8">
+  <section
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6"
+  >
+    @for (user of users; track user._id) {
+    <article
+      class="p-4 bg-green-50 rounded-xl border border-gray-300 flex flex-col items-center transition-all ease-in-out duration-300"
+    >
+      <header class="flex justify-center">
+        <figure
+          class="w-5/6 rounded-full overflow-clip border-[10px] border-[rgba(98,231,93,0.5)]"
+        >
+          <img class="w-full" [src]="user.image" />
+        </figure>
+      </header>
+      <div class="text-center max-w-full py-6">
+        <p class="truncate text-xl">
+          {{ user.first_name + " " + user.last_name }}
+        </p>
+      </div>
+      <footer>
+        <ul class="flex gap-4 text-gray-500 w-full">
+          <li class="w-1/3">
+            <button
+              class="w-full hover:opacity-30 transition-opacity ease-in-out duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1"
+                stroke="currentColor"
+                class="size-5/6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </button>
+          </li>
+          <li class="w-1/3">
+            <button
+              class="w-full hover:opacity-30 transition-opacity ease-in-out duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1"
+                stroke="currentColor"
+                class="size-5/6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+                />
+              </svg>
+            </button>
+          </li>
+          <li class="w-1/3">
+            <button
+              class="w-full hover:opacity-30 transition-opacity ease-in-out duration-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1"
+                stroke="currentColor"
+                class="size-5/6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                />
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </footer>
+    </article>
+    }
+  </section>
+</div>
+
+<!-- Pagination -->
+<div
+  class="fixed bottom-0 w-full flex items-center justify-center pb-10 lg:px-0 sm:px-6 px-4 bg-white"
+>
+  <div
+    class="w-full flex items-center justify-between border-t border-gray-200 px-12"
+  >
+    <div
+      (click)="goToPreviousPage()"
+      class="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer"
+    >
+      <svg
+        width="14"
+        height="8"
+        viewBox="0 0 14 8"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1.1665 4H12.8332"
+          stroke="currentColor"
+          stroke-width="1.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M1.1665 4L4.49984 7.33333"
+          stroke="currentColor"
+          stroke-width="1.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M1.1665 4.00002L4.49984 0.666687"
+          stroke="currentColor"
+          stroke-width="1.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <p class="text-sm ml-3 font-medium leading-none">Anterior</p>
+    </div>
+    <div class="sm:flex hidden">
+      <button
+        [routerLink]="['/home', '1']"
+        [class.underline]="esRutaActiva('/home/1') || esRutaActiva('/home')"
+        class="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2"
+        [class.fontBold]="page === 1"
+      >
+        1
+      </button>
+      <a
+        [routerLink]="['/home', 2]"
+        [class.underline]="esRutaActiva('/home/2')"
+        class="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-indigo-700 border-t border-transparent hover:border-indigo-400 pt-3 mr-4 px-2"
+      >
+        2
+      </a>
+    </div>
+    <div
+      (click)="goToNextPage()"
+      class="flex items-center pt-3 text-gray-600 hover:text-indigo-700 cursor-pointer"
+    >
+      <p class="text-sm font-medium leading-none mr-3">Siguiente</p>
+      <svg
+        width="14"
+        height="8"
+        viewBox="0 0 14 8"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1.1665 4H12.8332"
+          stroke="currentColor"
+          stroke-width="1.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9.5 7.33333L12.8333 4"
+          stroke="currentColor"
+          stroke-width="1.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9.5 0.666687L12.8333 4.00002"
+          stroke="currentColor"
+          stroke-width="1.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
