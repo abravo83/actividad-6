@@ -13,7 +13,7 @@ import { UsersService } from '../../services/users.service';
 export class UserComponent {
   // INJECTABLES
   activatedRoute = inject(ActivatedRoute);
-  usersServive = inject(UsersService);
+  usersService = inject(UsersService);
 
   // PROPERTIES
   id: string = '';
@@ -24,7 +24,7 @@ export class UserComponent {
       this.id = params['_id'];
 
       if (this.id) {
-        this.usersServive
+        this.usersService
           .getUserById(this.id)
           .subscribe((user: Iuser | any) => {
             this.user = user;

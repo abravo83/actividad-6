@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -31,7 +37,7 @@ export class UserFormComponent {
       image: new FormControl(null, [
         Validators.required,
         Validators.pattern(
-          /^(https?:\/\/(?:www\.)?[\w\-]+(\.[\w\-]+)+\/[\w\-\/]+(\.(jpg|jpeg|png|gif|bmp|svg|webp))(\?[\w\-=&]*)?)$/i
+          /^(https?:\/\/(?:www\.)?[\w\-]+(\.[\w\-]+)+(\/[\w\-\/]*)?(\?[\w\-@.=&]*)?)$/i
         ),
       ]),
     },
@@ -41,12 +47,17 @@ export class UserFormComponent {
   // METHODS
 
   // Lifecycle hooks
-  ngOnInit(): void {
-    if (this.user) {
-      this.userForm.patchValue({ first_name: this.user.first_name });
-      this.userForm.patchValue({ last_name: this.user.last_name });
-      this.userForm.patchValue({ email: this.user.email });
-      this.userForm.patchValue({ image: this.user.image });
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['user'] && changes['user'].currentValue) {
+      this.userForm.addControl('_id', new FormControl(this.user._id));
+
+      this.userForm.patchValue({
+        _id: this.user._id,
+        first_name: this.user.first_name,
+        last_name: this.user.last_name,
+        email: this.user.email,
+        image: this.user.image,
+      });
     }
   }
 

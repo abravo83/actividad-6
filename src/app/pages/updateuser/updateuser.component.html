@@ -1,1 +1,12 @@
-<p>updateuser works!</p>
+<section class="mt-40 sm:mt-32 container mx-auto">
+  <h1 class="text-2xl md:text-3xl xl:text-4xl font-bold p-6 2xl:px-60">
+    Actualiza los datos del usuario
+  </h1>
+  @if(user){
+  {{ user._id }}
+  <app-user-form
+    [user]="user"
+    (onFormSubmit)="onFormSubmitted($event)"
+  ></app-user-form>
+  }
+</section>
