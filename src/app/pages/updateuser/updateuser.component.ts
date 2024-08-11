@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { UserFormComponent } from '../../components/user-form/user-form.component';
 import { UsersService } from '../../services/users.service';
 import { Iuser } from '../../interfaces/iuser.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-updateuser',
@@ -15,6 +15,7 @@ export class UpdateuserComponent {
   // INJECTABLES
   usersService = inject(UsersService);
   activatedRoute = inject(ActivatedRoute);
+  router = inject(Router);
 
   // PROPERTIESç
   id: string = '';
@@ -42,16 +43,16 @@ export class UpdateuserComponent {
 
   onFormSubmitted(event: any) {
     console.log(event);
-    const newUserData = event;
-    // this.usersService.createNewUser(newUserData).subscribe({
-    //   next: (responde) => {
-    //     alert('registro exitoso');
-    //     // this.router.navigate(['/home']);
-    //   },
-    //   error: (error) => {
-    //     console.error(error);
-    //     alert(`ocurrio un error ${error}`);
-    //   },
-    // });
+    const updatedUserData = event;
+    this.usersService.updateUser(updatedUserData).subscribe({
+      next: (responde) => {
+        alert('actualización de datos exitosa');
+        this.router.navigate(['/home']);
+      },
+      error: (error) => {
+        console.error(error);
+        alert(`ocurrio un error ${error}`);
+      },
+    });
   }
 }
