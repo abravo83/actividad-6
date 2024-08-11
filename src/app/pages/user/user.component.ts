@@ -19,6 +19,15 @@ export class UserComponent {
   id: string = '';
   user: Iuser = {} as Iuser;
 
+  // METHODS
+
+  // Lifecycle hooks
+
+  /**
+   * Inicializa el componente.
+   *
+   * @return {void} Esta función no devuelve ningun valor.
+   */
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.id = params['_id'];
@@ -31,5 +40,17 @@ export class UserComponent {
           });
       }
     });
+  }
+
+  /**
+   * Función que gestiona la eliminación de un usuario.
+   *
+   * @param {string | undefined} id - El identificador del usuario a eliminar.
+   * @return {void} Sin valor de retorno.
+   */
+  confirmRemoveUser(id: string | undefined): void {
+    if (id) {
+      this.usersService.promtUserDeletion(id);
+    }
   }
 }

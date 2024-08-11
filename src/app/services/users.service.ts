@@ -36,7 +36,21 @@ export class UsersService {
     return this.http.put(`${this.API_BASEURL}users/${user._id}`, user);
   }
 
-  deleteUserById(id: number): Observable<Iuser | Object> {
+  deleteUserById(id: string): Observable<Iuser | Object> {
     return this.http.delete(`${this.API_BASEURL}users/${id}`);
+  }
+
+  promtUserDeletion(id: string) {
+    if (window.confirm('¿Estas seguro de borrar este usuario?')) {
+      this.deleteUserById(id).subscribe({
+        next: (response) => {
+          window.alert('Usuario borrado correctamente');
+        },
+        error: (err) => {
+          console.error(err);
+          window.alert('Error al borrar el usuario');
+        },
+      });
+    }
   }
 }

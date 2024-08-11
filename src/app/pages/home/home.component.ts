@@ -51,13 +51,25 @@ export class HomeComponent {
   }
 
   /**
-   * Una función que comprueba si la URL actual coincide con la URL proporcionada.
+   * Función que comprueba si la URL actual coincide con la URL proporcionada.
    *
    * @param {string} url - La URL a comprobar.
    * @return {boolean} Verdadero si la URL actual coincide con la URL proporcionada, de lo contrario falso.
    */
   esRutaActiva(url: string): boolean {
     return this.router.url === url;
+  }
+
+  /**
+   * Función que gestiona la eliminación de un usuario.
+   *
+   * @param {string | undefined} id - El identificador del usuario a eliminar.
+   * @return {void} Sin valor de retorno.
+   */
+  confirmRemoveUser(id: string | undefined): void {
+    if (id) {
+      this.usersService.promtUserDeletion(id);
+    }
   }
 
   /**
