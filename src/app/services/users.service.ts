@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Iuser } from '../interfaces/iuser.interface';
+import { DialogsService } from './dialogs.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +15,8 @@ export class UsersService {
 
   // INJECTABLES
   http = inject(HttpClient);
+  dialogService = inject(DialogsService);
+  router = inject(Router);
 
   constructor() {}
 
@@ -44,11 +48,19 @@ export class UsersService {
     if (window.confirm('¿Estas seguro de borrar este usuario?')) {
       this.deleteUserById(id).subscribe({
         next: (response) => {
-          window.alert('Usuario borrado correctamente');
+          // window.alert('Usuario borrado correctamente');
+          this.dialogService.dialogTitle = 'Usuario borrado';
+          this.dialogService.dialogMessage = 'Usuario borrado correctamente';
+          this.dialogService.signalshowNotificationDialog.set(true);
+          this.router.navigate(['/home']);
         },
         error: (err) => {
           console.error(err);
-          window.alert('Error al borrar el usuario');
+          // window.alert('Error al borrar el usuario');
+          this.dialogService.dialogTitle = 'Error';
+          this.dialogService.dialogMessage =
+            'Error al intentar borrar el usuario. Inténtelo de nuevo más tarde';
+          this.dialogService.signalshowNotificationDialog.set(true);
         },
       });
     }

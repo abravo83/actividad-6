@@ -3,6 +3,7 @@ import { UserFormComponent } from '../../components/user-form/user-form.componen
 import { UsersService } from '../../services/users.service';
 import { Iuser } from '../../interfaces/iuser.interface';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DialogsService } from '../../services/dialogs.service';
 
 @Component({
   selector: 'app-updateuser',
@@ -14,6 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateuserComponent {
   // INJECTABLES
   usersService = inject(UsersService);
+  dialogsService = inject(DialogsService);
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
 
@@ -46,12 +48,17 @@ export class UpdateuserComponent {
     const updatedUserData = event;
     this.usersService.updateUser(updatedUserData).subscribe({
       next: (responde) => {
-        alert('actualización de datos exitosa');
+        this.dialogsService.dialogTitle = 'Datos actualizados';
+        this.dialogsService.dialogMessage = 'Los datos han sido actualizados.';
+        this.dialogsService.signalshowNotificationDialog.set(true);
         this.router.navigate(['/home']);
       },
       error: (error) => {
         console.error(error);
-        alert(`ocurrio un error ${error}`);
+        this.dialogsService.dialogTitle = 'Error';
+        this.dialogsService.dialogMessage =
+          'Algo ha fallado en la actualización. Inténtelo de nuevo más tarde.';
+        this.dialogsService.signalshowNotificationDialog.set(true);
       },
     });
   }

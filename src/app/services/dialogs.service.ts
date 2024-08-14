@@ -5,7 +5,11 @@ import { Injectable, signal, WritableSignal } from '@angular/core';
 })
 export class DialogsService {
   // SIGNALS
-  signalShowConfirmationDialog: WritableSignal<boolean> = signal(false);
+  signalshowNotificationDialog: WritableSignal<boolean> = signal(false);
+
+  // PROPERTIES
+  dialogTitle: string = '';
+  dialogMessage: string = '';
 
   // METHODS
 

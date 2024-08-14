@@ -13,12 +13,30 @@ export class DialogsComponent {
   dialogsService = inject(DialogsService);
 
   // PROPERTIES
-  showConfirmationDialog: boolean = false;
+  showNotificationDialog: boolean = false;
+  dialogTitle: string = '';
+  dialogMessage: string = '';
 
+  // METHODS
+
+  // Lifecycle hooks and Contructor
   constructor() {
     effect(() => {
-      this.showConfirmationDialog =
-        this.dialogsService.signalShowConfirmationDialog();
+      this.showNotificationDialog =
+        this.dialogsService.signalshowNotificationDialog();
+      this.dialogTitle = this.dialogsService.dialogTitle;
+      this.dialogMessage = this.dialogsService.dialogMessage;
     });
+  }
+
+  ngOnInit(): void {
+    this.dialogTitle = this.dialogsService.dialogTitle;
+    this.dialogMessage = this.dialogsService.dialogMessage;
+  }
+
+  // Other Methods
+
+  onClickDismiss(): void {
+    this.dialogsService.signalshowNotificationDialog.set(false);
   }
 }

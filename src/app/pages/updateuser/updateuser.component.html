@@ -3,7 +3,6 @@
     Actualiza los datos del usuario
   </h1>
   @if(user){
-  {{ user._id }}
   <app-user-form
     [user]="user"
     (onFormSubmit)="onFormSubmitted($event)"
