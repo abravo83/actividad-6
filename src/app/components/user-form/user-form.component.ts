@@ -37,7 +37,7 @@ export class UserFormComponent {
       image: new FormControl(null, [
         Validators.required,
         Validators.pattern(
-          /^(https?:\/\/(?:www\.)?[\w\-]+(\.[\w\-]+)+(\/[\w\-\/]*)?(\?[\w\-@.=&]*)?)$/i
+          /^(https?:\/\/(?:www\.)?[\w\-]+(\.[\w\-]+)+(\/?[\w\-\.]*)?(\?[\w\-@.=&]*)?(\.(?:jpg|jpeg|png|gif|bmp|webp))?)$/i
         ),
       ]),
     },
