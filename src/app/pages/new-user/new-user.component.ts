@@ -26,8 +26,7 @@ export class NewUserComponent {
    * @param {any} event - The form submission event.
    * @return {void} This function does not return anything.
    */
-  onFormSubmitted(event: any) {
-    console.log(event);
+  onFormSubmitted(event: any): void {
     const newUser = event;
     this.usersService.createNewUser(newUser).subscribe({
       next: (responde) => {
