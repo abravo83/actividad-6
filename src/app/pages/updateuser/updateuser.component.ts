@@ -35,7 +35,6 @@ export class UpdateuserComponent {
           .getUserById(this.id)
           .subscribe((user: Iuser | any) => {
             this.user = user;
-            console.log(this.user);
           });
       }
     });
@@ -49,8 +48,7 @@ export class UpdateuserComponent {
    * @param {any} event - The event triggered by the form submission.
    * @return {void}
    */
-  onFormSubmitted(event: any) {
-    console.log(event);
+  onFormSubmitted(event: any): void {
     const updatedUserData = event;
     this.usersService.updateUser(updatedUserData).subscribe({
       next: (responde) => {
