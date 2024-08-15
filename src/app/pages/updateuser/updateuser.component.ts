@@ -49,8 +49,9 @@ export class UpdateuserComponent {
     this.usersService.updateUser(updatedUserData).subscribe({
       next: (responde) => {
         this.dialogsService.dialogTitle = 'Datos actualizados';
-        this.dialogsService.dialogMessage = 'Los datos han sido actualizados.';
-        this.dialogsService.signalshowNotificationDialog.set(true);
+        this.dialogsService.dialogMessage =
+          'Los datos del usuario han sido actualizados.';
+        this.dialogsService.signalShowNotificationDialog.set(true);
         this.router.navigate(['/home']);
       },
       error: (error) => {
@@ -58,7 +59,7 @@ export class UpdateuserComponent {
         this.dialogsService.dialogTitle = 'Error';
         this.dialogsService.dialogMessage =
           'Algo ha fallado en la actualización. Inténtelo de nuevo más tarde.';
-        this.dialogsService.signalshowNotificationDialog.set(true);
+        this.dialogsService.signalShowNotificationDialog.set(true);
       },
     });
   }

@@ -45,24 +45,32 @@ export class UsersService {
   }
 
   promtUserDeletion(id: string) {
-    if (window.confirm('¿Estas seguro de borrar este usuario?')) {
-      this.deleteUserById(id).subscribe({
-        next: (response) => {
-          // window.alert('Usuario borrado correctamente');
-          this.dialogService.dialogTitle = 'Usuario borrado';
-          this.dialogService.dialogMessage = 'Usuario borrado correctamente';
-          this.dialogService.signalshowNotificationDialog.set(true);
-          this.router.navigate(['/home']);
-        },
-        error: (err) => {
-          console.error(err);
-          // window.alert('Error al borrar el usuario');
-          this.dialogService.dialogTitle = 'Error';
-          this.dialogService.dialogMessage =
-            'Error al intentar borrar el usuario. Inténtelo de nuevo más tarde';
-          this.dialogService.signalshowNotificationDialog.set(true);
-        },
-      });
-    }
+    this.dialogService.dialogTitle = '¿Estas seguro de borrar este usuario?';
+    this.dialogService.dialogMessage = 'Esta acción no se puede deshacer.';
+    this.dialogService.signalShowConfirmationDialog.set(true);
+
+    this.dialogService.showConfirmationDialog(
+      '¿Estás seguro de borrar este usuario?',
+      'Esta acción no se puede deshacer.',
+      () => {
+        this.deleteUserById(id).subscribe({
+          next: (response) => {
+            this.dialogService.signalShowConfirmationDialog.set(false);
+            this.dialogService.dialogTitle = 'Usuario borrado';
+            this.dialogService.dialogMessage = 'Usuario borrado correctamente';
+            this.dialogService.signalShowNotificationDialog.set(true);
+            this.router.navigate(['/home']);
+          },
+          error: (err) => {
+            console.error(err);
+            this.dialogService.signalShowConfirmationDialog.set(false);
+            this.dialogService.dialogTitle = 'Error';
+            this.dialogService.dialogMessage =
+              'Error al intentar borrar el usuario. Inténtelo de nuevo más tarde';
+            this.dialogService.signalShowNotificationDialog.set(true);
+          },
+        });
+      }
+    );
   }
 }

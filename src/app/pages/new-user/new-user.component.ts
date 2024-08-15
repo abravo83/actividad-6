@@ -28,7 +28,7 @@ export class NewUserComponent {
         this.dialogsService.dialogTitle = 'Registro exitoso';
         this.dialogsService.dialogMessage =
           'El nuevo usuario ha sido registrado correctamente.';
-        this.dialogsService.signalshowNotificationDialog.set(true);
+        this.dialogsService.signalShowNotificationDialog.set(true);
         this.router.navigate(['/home']);
       },
       error: (error) => {
@@ -36,7 +36,7 @@ export class NewUserComponent {
         this.dialogsService.dialogTitle = 'Error';
         this.dialogsService.dialogMessage =
           'Algo ha fallado en el registro. Inténtelo de nuevo más tarde.';
-        this.dialogsService.signalshowNotificationDialog.set(true);
+        this.dialogsService.signalShowNotificationDialog.set(true);
       },
     });
   }

@@ -1,3 +1,4 @@
+<!-- Notification Dialog -->
 @if (showNotificationDialog) {
 <section
   class="fixed top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.5)] flex items-center justify-center"
@@ -10,9 +11,41 @@
     <button
       (click)="onClickDismiss()"
       class="p-4 rounded border mt-4 hover:bg-gray-300 w-full"
+      autofocus
+      #okButton
     >
       OK
     </button>
+  </div>
+</section>
+}
+
+<!-- Confirmation Dialog -->
+@if (showConfirmationDialog) {
+<section
+  class="fixed top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.5)] flex items-center justify-center"
+>
+  <div
+    class="w-full m-4 sm:w-[500px] min-h-24 bg-white rounded-md border flex flex-col py-8 px-8 items-center"
+  >
+    <h1 class="font-semibold text-lg">{{ dialogTitle }}</h1>
+    <p>{{ dialogMessage }}</p>
+    <div class="flex gap-4">
+      <button
+        (click)="onClickAccept()"
+        class="p-4 rounded border mt-4 hover:bg-gray-300 w-32"
+        autofocus
+      >
+        Aceptar
+      </button>
+      <button
+        (click)="onClickCancel()"
+        class="p-4 rounded border mt-4 hover:bg-gray-300 w-32"
+        autofocus
+      >
+        Cancelar
+      </button>
+    </div>
   </div>
 </section>
 }
