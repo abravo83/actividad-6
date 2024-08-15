@@ -27,6 +27,10 @@ export class HomeComponent {
   page: number = 1;
   lastPage: number = 2;
 
+  // METHODS
+
+  //? Lifecycle hooks
+
   /**
    * Inicializa el componente.
    * Si el parámetro 'page' se encuentra presente, se actualiza el componente con los datos de la pagina solicitada.
@@ -49,6 +53,8 @@ export class HomeComponent {
       }
     });
   }
+
+  //? Other methods
 
   /**
    * Función que comprueba si la URL actual coincide con la URL proporcionada.

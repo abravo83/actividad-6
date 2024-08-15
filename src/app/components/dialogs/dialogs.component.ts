@@ -50,31 +50,35 @@ export class DialogsComponent {
     });
   }
 
-  ngAfterViewInit() {
-    if (this.dialogsService.signalShowNotificationDialog()) {
-      this.focusOkButton();
-    }
-  }
-
   // Other Methods
 
+  /**
+   * Dismisses the notification dialog by setting the `signalShowNotificationDialog` signal to `false`.
+   *
+   * This function does not take any parameters.
+   * It does not return any value.
+   */
   onClickDismiss(): void {
     this.dialogsService.signalShowNotificationDialog.set(false);
   }
 
+  /**
+   * Calls the onClickAccept method of the dialogsService.
+   *
+   * This function does not take any parameters.
+   * It does not return any value.
+   */
   onClickAccept(): void {
     this.dialogsService.onClickAccept();
   }
 
+  /**
+   * Cancels the confirmation dialog by setting the `signalShowConfirmationDialog` signal to `false`.
+   *
+   * This function does not take any parameters.
+   * It does not return any value.
+   */
   onClickCancel(): void {
     this.dialogsService.signalShowConfirmationDialog.set(false);
-  }
-
-  focusOkButton(): void {
-    if (this.okButton?.nativeElement) {
-      setTimeout(() => {
-        this.okButton.nativeElement.focus();
-      }, 100);
-    }
   }
 }

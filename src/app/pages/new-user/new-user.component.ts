@@ -20,6 +20,12 @@ export class NewUserComponent {
 
   // METHODS
 
+  /**
+   * Submits the form and sends a request to create a new user.
+   *
+   * @param {any} event - The form submission event.
+   * @return {void} This function does not return anything.
+   */
   onFormSubmitted(event: any) {
     console.log(event);
     const newUser = event;

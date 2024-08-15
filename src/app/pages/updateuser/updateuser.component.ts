@@ -25,7 +25,7 @@ export class UpdateuserComponent {
 
   // METHODS
 
-  // Lifecycle hooks
+  //? Lifecycle hooks
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       this.id = params['_id'];
@@ -41,8 +41,14 @@ export class UpdateuserComponent {
     });
   }
 
-  // router = inject(Router);
+  //? Other methods
 
+  /**
+   * Handles the submission of the user form, updating the user data and displaying a notification.
+   *
+   * @param {any} event - The event triggered by the form submission.
+   * @return {void}
+   */
   onFormSubmitted(event: any) {
     console.log(event);
     const updatedUserData = event;

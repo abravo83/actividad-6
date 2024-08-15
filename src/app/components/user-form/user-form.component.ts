@@ -62,8 +62,12 @@ export class UserFormComponent {
   }
 
   // Other Methods
-
-  onSubmit() {
+  /**
+   * Submits the user form data.
+   *
+   * @return {void} No return value, emits the form data through the onFormSubmit event emitter.
+   */
+  onSubmit(): void {
     this.onFormSubmit.emit(this.userForm.value);
   }
 }

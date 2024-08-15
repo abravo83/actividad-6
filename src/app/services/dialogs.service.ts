@@ -34,6 +34,13 @@ export class DialogsService {
     this.callbackForConfirmation = callback;
   }
 
+  /**
+   * Handles the confirmation dialog's accept button click event.
+   *
+   * Executes the callback function saved in the service when the user confirms the dialog.
+   *
+   * @return {void} No return value.
+   */
   onClickAccept() {
     this.callbackForConfirmation();
   }
